@@ -25,16 +25,16 @@ const Login = () => {
   const handleGoogleLogin = () => {
     googleSignIn().then((result) => {
       console.log(result.user);
-      navigate('/')
+      navigate("/");
     });
   };
 
   return (
     <div className="hero min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 flex items-center justify-center">
       <div className="card w-full max-w-xl bg-white shadow-2xl rounded-lg overflow-hidden">
-        <div className="p-8 lg:p-10">
-          <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">
-            Login
+        <div className="p-8 lg:p-10 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% ...">
+          <h2 className="text-xl font-bold text-center mb-6 text-gray-800">
+            Welcome Back !
           </h2>
           <form onSubmit={handleLogin} className="space-y-4">
             <div className="form-control">
@@ -60,14 +60,6 @@ const Login = () => {
                 className="input input-bordered w-full border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-200"
                 required
               />
-              <label className="label">
-                <a
-                  href="#"
-                  className="label-text-alt link link-hover text-blue-500"
-                >
-                  Forgot password?
-                </a>
-              </label>
             </div>
             <div className="form-control mt-6">
               <input
@@ -77,17 +69,21 @@ const Login = () => {
               />
             </div>
             <div>
-              <button className="btn btn-outline w-full" onClick={handleGoogleLogin}>Google</button>
+              <button
+                className="btn btn-outline w-full"
+                onClick={handleGoogleLogin}
+              >
+                Google
+              </button>
             </div>
-            <p className="text-center mt-4 text-gray-700">
+            <p className="text-center mt-4 text-2xl text-gray-700">
               <small>
-                New here?{" "}
-                <Link to="/register" className="text-blue-500">
+                New here?
+                <Link to="/register" className="text-blue-800 font-bold">
                   Register
                 </Link>
               </small>
             </p>
-         
           </form>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../authentication/AuthProvider/AuthProvider";
 
@@ -18,6 +18,7 @@ const Register = () => {
     createUser(email, password)
     .then(result => {
       console.log(result)
+      navigate('/')
     })
     .catch(error => {
       console.log(error.message)
@@ -28,9 +29,9 @@ const Register = () => {
   return (
     <div className="hero min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 flex items-center justify-center">
       <div className="card w-[700px] max-w-xl bg-white shadow-2xl rounded-lg overflow-hidden">
-        <div className="p-6 lg:p-10">
-          <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">
-            Register
+        <div className="p-4 lg:p-4 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% ...">
+          <h2 className="text-xl font-bold text-center mb-6 text-gray-800">
+           User Registration !
           </h2>
           <form onSubmit={handleRegister} className="space-y-2">
             <div className="form-control">
@@ -90,10 +91,10 @@ const Register = () => {
               />
             </div>
          
-            <p className="text-center mt-4 text-gray-700">
+            <p className="text-center mt-4 text-xl text-gray-700">
               <small>
-                Already have an account?{" "}
-                <Link to="/login" className="text-blue-500">
+                Already have an account?
+                <Link to="/login" className="text-blue-800 font-bold">
                   Login
                 </Link>
               </small>
