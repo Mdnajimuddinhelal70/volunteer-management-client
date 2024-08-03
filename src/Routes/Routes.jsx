@@ -3,6 +3,7 @@ import Home from "../pages/Home/Home/Home";
 import Main from "../Layout/Main/Main";
 import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
+import VolunteerNeedDetails from "../components/VolunteerNeedDetails/VolunteerNeedDetails";
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />
+      },
+      {
+        path: "/volunteerDetails/:id",
+        element: <VolunteerNeedDetails />
       }
     ]
   },

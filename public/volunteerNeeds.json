@@ -1,0 +1,44 @@
+[
+  {
+    "thumbnail": "https://i.ibb.co/dk2z51f/voluter4.jpghttps://i.ibb.co/mDQQDqS/volnt5.jpg",
+    "title": "Help Clean the Park",
+    "category": "Environment",
+    "deadline": "2024-08-15",
+    "detailsUrl": "/details/1"
+  },
+  {
+    "thumbnail": "https://i.ibb.co/YTW4CT0/vlntr6.jpg",
+    "title": "Support Local Food Bank",
+    "category": "Community Service",
+    "deadline": "2024-08-20",
+    "detailsUrl": "/details/2"
+  },
+  {
+    "thumbnail": "https://i.ibb.co/w6yRzTR/voluter3.jpg",
+    "title": "Teach Coding to Kids",
+    "category": "Education",
+    "deadline": "2024-08-25",
+    "detailsUrl": "/details/3"
+  },
+  {
+    "thumbnail": "https://i.ibb.co/whmsxjY/volutr1.jpg",
+    "title": "Organize a Blood Drive",
+    "category": "Health",
+    "deadline": "2024-08-30",
+    "detailsUrl": "/details/4"
+  },
+  {
+    "thumbnail": "https://i.ibb.co/s3cypWt/valutr2.jpg",
+    "title": "Mentor High School Students",
+    "category": "Youth",
+    "deadline": "2024-09-05",
+    "detailsUrl": "/details/5"
+  },
+  {
+    "thumbnail": "https://i.ibb.co/w6yRzTR/voluter3.jpg",
+    "title": "Animal Shelter Assistance",
+    "category": "Animal Welfare",
+    "deadline": "2024-09-10",
+    "detailsUrl": "/details/6"
+  }
+]

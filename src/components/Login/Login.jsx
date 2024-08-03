@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../authentication/AuthProvider/AuthProvider";
+import { FaGoogle } from "react-icons/fa";
 
 const Login = () => {
   const { loginUser, googleSignIn } = useContext(AuthContext);
@@ -74,6 +75,7 @@ const Login = () => {
                 onClick={handleGoogleLogin}
               >
                 Google
+                <FaGoogle />
               </button>
             </div>
             <p className="text-center mt-4 text-2xl text-gray-700">
