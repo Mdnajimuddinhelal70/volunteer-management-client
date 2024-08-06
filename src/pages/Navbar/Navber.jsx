@@ -17,6 +17,11 @@ const Navber = () => {
         </Link>
       </li>
       <li>
+        <Link to="/volunteerNdPstDtail" className="text-gray-700 hover:text-gray-900">
+         Volunteer Need Post Detail
+        </Link>
+      </li>
+      <li>
         <Link to="/login" className="text-gray-700 hover:text-gray-900">
           Login
         </Link>
@@ -56,7 +61,7 @@ const Navber = () => {
           </ul>
         </div>
         <Link to="/" className="btn btn-ghost text-xl">
-          Volunteer Management Website
+          Volunteer Management
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
