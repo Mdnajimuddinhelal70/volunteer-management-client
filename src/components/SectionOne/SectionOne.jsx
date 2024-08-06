@@ -6,7 +6,6 @@ import { Pagination } from "swiper/modules";
 const SectionOne = () => {
   return (
     <>
-    
      <div className=" container mx-auto p-4 mb-10">
      <div className="text-center bg-teal-500 p-3 text-3xl font-bold mt-7 mb-4">Our Members</div>
      <Swiper

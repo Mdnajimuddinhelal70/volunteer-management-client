@@ -12,6 +12,11 @@ const Navber = () => {
         </Link>
       </li>
       <li>
+        <Link to="/addVolunteerPost" className="text-gray-700 hover:text-gray-900">
+          Add Volunteer Post
+        </Link>
+      </li>
+      <li>
         <Link to="/login" className="text-gray-700 hover:text-gray-900">
           Login
         </Link>

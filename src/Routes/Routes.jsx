@@ -4,6 +4,7 @@ import Main from "../Layout/Main/Main";
 import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
 import VolunteerNeedDetails from "../components/VolunteerNeedDetails/VolunteerNeedDetails";
+import AddVolunteerPost from "../pages/AddVolunteerPost/AddVolunteerPost";
 
 export const router = createBrowserRouter([
   {
@@ -25,7 +26,11 @@ export const router = createBrowserRouter([
       {
         path: "/volunteerDetails/:id",
         element: <VolunteerNeedDetails />
-      }
+      },
+      {
+        path: "/addVolunteerPost",
+        element: <AddVolunteerPost />
+      },
     ]
   },
 ]);

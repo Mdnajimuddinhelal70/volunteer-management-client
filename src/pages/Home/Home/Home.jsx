@@ -1,4 +1,5 @@
 import SectionOne from "../../../components/SectionOne/SectionOne";
+import SectionTwo from "../../../components/SectionTwo/SectionTwo";
 import Banner from "../Banner/Banner";
 import VolunteerNeeds from "../VolunteerNeeds/VolunteerNeeds ";
 
@@ -10,6 +11,7 @@ const Home = () => {
         <Banner></Banner>
         <VolunteerNeeds />
         <SectionOne />
+        <SectionTwo />
         </div>
         </div>
     );
