@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../authentication/AuthProvider/AuthProvider";
 
 const Navber = () => {
-  const {user, logOut} = useContext(AuthContext)
+  const { user, logOut } = useContext(AuthContext);
   const navLinks = (
     <>
       <li>
@@ -12,13 +12,19 @@ const Navber = () => {
         </Link>
       </li>
       <li>
-        <Link to="/addVolunteerPost" className="text-gray-700 hover:text-gray-900">
+        <Link
+          to="/addVolunteerPost"
+          className="text-gray-700 hover:text-gray-900"
+        >
           Add Volunteer Post
         </Link>
       </li>
       <li>
-        <Link to="/volunteerNdPstDtail" className="text-gray-700 hover:text-gray-900">
-         Volunteer Need Post Detail
+        <Link
+          to="/volunteerNdPstDtail"
+          className="text-gray-700 hover:text-gray-900"
+        >
+          My Need Volunteer Post
         </Link>
       </li>
       <li>
@@ -30,8 +36,8 @@ const Navber = () => {
   );
 
   const handleLogOut = () => {
-    logOut()
-  }
+    logOut();
+  };
 
   return (
     <div className="navbar bg-white shadow-lg">
@@ -68,31 +74,29 @@ const Navber = () => {
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
       <div className="navbar-end">
-       {user ?  <div className="dropdown dropdown-end">
-          <div
-            tabIndex={0}
-            role="button"
-            className="btn btn-ghost btn-circle avatar"
-          >
-            <div className="w-10 rounded-full">
-              <img
-                alt="User avatar"
-                src={user?.photoURL}
-              />
+        {user ? (
+          <div className="dropdown dropdown-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle avatar"
+            >
+              <div className="w-10 rounded-full">
+                <img alt="User avatar" src={user?.photoURL} />
+              </div>
             </div>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white rounded-box w-52"
+            >
+              <li>
+                <button onClick={handleLogOut}>Logout</button>
+              </li>
+            </ul>
           </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white rounded-box w-52"
-          >
-            <li>
-             <button onClick={handleLogOut}>Logout</button>
-            </li>
-          </ul>
-        </div>
-        :
-        <Link to="/login">Login</Link>
-      }
+        ) : (
+          <Link to="/login">Login</Link>
+        )}
       </div>
     </div>
   );

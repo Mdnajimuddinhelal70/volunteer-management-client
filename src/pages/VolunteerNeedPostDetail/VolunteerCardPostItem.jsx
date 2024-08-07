@@ -1,52 +1,54 @@
-const VolunteerCardPostItem = ({ post }) => {
-  const {
-    thumbnail,
-    title,
-    description,
-    category,
-    location,
-    volunteersNeeded,
-    deadline,
-    organizerName,
-    email,
-  } = post;
+const VolunteerCardPostItem = ({ post, onDelete }) => {
+  const { _id, thumbnail, title, category } = post;
 
   return (
-    <div className="card bg-white w-72 shadow-xl rounded-lg overflow-hidden transition-transform hover:scale-105 mx-auto mt-10">
-      <figure className="relative">
-        <img src={thumbnail} alt={title} className="w-full h-48 object-cover" />
-        <div className="absolute bottom-0 left-0 bg-gradient-to-t from-black to-transparent w-full p-4">
-          <h2 className="text-white text-lg font-bold">{title}</h2>
-        </div>
-      </figure>
-      <div className="p-3">
-        <p className="text-gray-700 mb-2">
-          <strong>Description:</strong> {description}
-        </p>
-        <p className="text-gray-700 mb-2">
-          <strong>Category:</strong> {category}
-        </p>
-        <p className="text-gray-700 mb-2">
-          <strong>Location:</strong> {location}
-        </p>
-        <p className="text-gray-700 mb-2">
-          <strong>Volunteers Needed:</strong> {volunteersNeeded}
-        </p>
-        <p className="text-gray-700 mb-2">
-          <strong>Deadline:</strong> {new Date(deadline).toLocaleDateString()}
-        </p>
-        <p className="text-gray-700 mb-2">
-          <strong>Organizer Name:</strong> {organizerName}
-        </p>
-        <p className="text-gray-700 mb-2">
-          <strong>Organizer Email:</strong> {email}
-        </p>
-        <div className="mt-4 text-right">
-          <button className="btn btn-block bg-zinc-400 hover:bg-slate-600 text-white font-bold py-2 px-4 rounded transition-transform hover:scale-105">
-            View Details
-          </button>
-        </div>
-      </div>
+    <div className="overflow-x-auto">
+      <table className="min-w-full divide-y divide-gray-200">
+        <thead className="bg-gray-50">
+          <tr>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Image
+            </th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Title
+            </th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Category
+            </th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Actions
+            </th>
+          </tr>
+        </thead>
+        <tbody className="bg-white divide-y divide-gray-200">
+          <tr>
+            <td className="px-6 py-4 whitespace-nowrap">
+              <img
+                src={thumbnail}
+                alt={title}
+                className="w-12 h-12 object-cover"
+              />
+            </td>
+            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+              {title}
+            </td>
+            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              {category}
+            </td>
+            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+              <button className="text-blue-600 hover:text-blue-900 mr-4">
+                Update
+              </button>
+              <button
+                onClick={() => onDelete(_id)} // Use the passed delete handler
+                className="text-red-600 hover:text-red-900"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 };

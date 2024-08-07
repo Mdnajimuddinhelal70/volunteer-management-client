@@ -1,28 +1,109 @@
-import { useEffect, useState } from "react";
-import VolunteerCardPostItem from "./VolunteerCardPostItem";
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
+const VolunteerNeedPostDetail = () => {
+  const [needPostDetail, setNeedPostDetail] = useState([]);
 
-    const VolunteerNeedPostDetail = () => {
-        const [needPostDetail, setNeedPostDetail] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:5000/needPostDetail")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setNeedPostDetail(data);
+      });
+  }, []);
 
-        useEffect(() => {
-            fetch("http://localhost:5000/needPostDetail")
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                setNeedPostDetail(data)
-            })
-        }, [])
-        return (
-            <div className="md:grid grid-cols-3 gap-0 justify-between mb-10">
-               {
-                needPostDetail.map(post => <VolunteerCardPostItem
-                key={post._id}
-                post={post}
-                ></VolunteerCardPostItem>)
-               }
-            </div>
-        );
-    };
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "Do you want to delete this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/deleteVolunteer/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.deletedCount > 0) {
+              // Remove the deleted item from the state
+              setNeedPostDetail((prevPosts) =>
+                prevPosts.filter((post) => post._id !== id)
+              );
+              Swal.fire(
+                'Deleted!',
+                'Your item has been deleted.',
+                'success'
+              );
+            }
+          });
+      }
+    });
+  };
 
-    export default VolunteerNeedPostDetail;
+  return (
+    <div className="mb-10">
+      <div className="overflow-x-auto">
+        <table className="min-w-full divide-y divide-gray-200">
+          <thead className="bg-gray-50">
+            <tr>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Image
+              </th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Title
+              </th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Category
+              </th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Actions
+              </th>
+            </tr>
+          </thead>
+          <tbody className="bg-white divide-y divide-gray-200">
+            {needPostDetail.map((post) => {
+              const { _id, thumbnail, title, category } = post;
+              return (
+                <tr key={_id}>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <img
+                      src={thumbnail}
+                      alt={title}
+                      className="w-12 h-12 object-cover"
+                    />
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    {title}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {category}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <Link to={`/updateVolunteer/${_id}`} className="text-blue-600 hover:text-blue-900 mr-4">
+                      Update
+                    </Link>
+                    <button
+                      onClick={() => handleDelete(_id)}
+                      className="text-red-600 hover:text-red-900"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
+
+export default VolunteerNeedPostDetail;

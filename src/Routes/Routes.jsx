@@ -6,6 +6,7 @@ import Register from "../components/Register/Register";
 import VolunteerNeedDetails from "../components/VolunteerNeedDetails/VolunteerNeedDetails";
 import AddVolunteerPost from "../pages/AddVolunteerPost/AddVolunteerPost";
 import VolunteerNeedPostDetail from "../pages/VolunteerNeedPostDetail/VolunteerNeedPostDetail";
+import UpdateVolunteer from "../components/UpdateVolunteer/UpdateVolunteer";
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
       {
         path: "/volunteerNdPstDtail",
         element: <VolunteerNeedPostDetail />
+      },
+      {
+        path: "/updateVolunteer/:id",
+        element: <UpdateVolunteer />
       },
     ]
   },
