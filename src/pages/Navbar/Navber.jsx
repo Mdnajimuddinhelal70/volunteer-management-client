@@ -13,10 +13,10 @@ const Navber = () => {
       </li>
       <li>
         <Link
-          to="/addVolunteerPost"
+          to="/needPostDetails"
           className="text-gray-700 hover:text-gray-900"
         >
-          Add Volunteer Post
+         Need Post Details
         </Link>
       </li>
       <li>
@@ -75,7 +75,7 @@ const Navber = () => {
       </div>
       <div className="navbar-end">
         {user ? (
-          <div className="dropdown dropdown-end">
+          <div className="dropdown dropdown-end z-10">
             <div
               tabIndex={0}
               role="button"
@@ -91,6 +91,22 @@ const Navber = () => {
             >
               <li>
                 <button onClick={handleLogOut}>Logout</button>
+              </li>
+              <li>
+                <Link
+                  to="/addVolunteerPost"
+                  className="text-gray-700 hover:text-gray-900"
+                >
+                  Add Volunteer Post
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/manageMypost"
+                  className="text-gray-700 hover:text-gray-900"
+                >
+                  Manage My Post
+                </Link>
               </li>
             </ul>
           </div>

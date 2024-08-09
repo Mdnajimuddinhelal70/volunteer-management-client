@@ -6,7 +6,12 @@ import Register from "../components/Register/Register";
 import VolunteerNeedDetails from "../components/VolunteerNeedDetails/VolunteerNeedDetails";
 import AddVolunteerPost from "../pages/AddVolunteerPost/AddVolunteerPost";
 import VolunteerNeedPostDetail from "../pages/VolunteerNeedPostDetail/VolunteerNeedPostDetail";
-import UpdateVolunteer from "../components/UpdateVolunteer/UpdateVolunteer";
+import UpdateVolunteerPost from "../components/UpdateVolunteer/UpdateVolunteerPost ";
+import ManageMypost from "../components/ManageMypost/ManageMypost";
+import NeedPostDetails from "../pages/NeedPostDetails/NeedPostDetails";
+import BeAVolunteer from "../components/BeAVolunteer";
+import NeedVolunteerSee from "../pages/NeedVolunteerSee/NeedVolunteerSee";
+import VolunteerNeedPostDetails from "../components/VolunteerNeedPostDetails/VolunteerNeedPostDetails";
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +31,11 @@ export const router = createBrowserRouter([
         element: <Register />
       },
       {
+        path: "/need-volunteer",
+        element: <NeedVolunteerSee />
+      },
+
+      {
         path: "/volunteerDetails/:id",
         element: <VolunteerNeedDetails />
       },
@@ -39,7 +49,23 @@ export const router = createBrowserRouter([
       },
       {
         path: "/updateVolunteer/:id",
-        element: <UpdateVolunteer />
+        element: <UpdateVolunteerPost />
+      },
+      {
+        path: "/manageMypost",
+        element: <ManageMypost />
+      },
+      {
+        path: "/needPostDetails",
+        element: <NeedPostDetails />
+      },
+      {
+        path: "/posts/:id",
+        element: <BeAVolunteer />
+      },
+      {
+        path: "/volunteer-need-details/:id",
+        element: <VolunteerNeedPostDetails />
       },
     ]
   },

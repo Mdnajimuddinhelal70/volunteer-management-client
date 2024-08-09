@@ -2,44 +2,49 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const VolunteerNeeds = () => {
-  const [needs, setNeeds] = useState([]);
+  const [posts, setPosts] = useState([]);
 
+  //
   useEffect(() => {
     fetch("http://localhost:5000/volunteer")
-      .then((response) => response.json())
-      .then((data) => setNeeds(data));
+      .then((res) => res.json())
+      .then((data) => setPosts(data));
   }, []);
 
   return (
-    <div className="container mx-auto py-8">
-      <h2 className="text-2xl font-bold mb-4">Volunteer Needs Now</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {needs.map((need) => (
+    <section className="p-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {posts.map((post) => (
           <div
-            key={need._id}
-            className="bg-white shadow-md rounded-lg overflow-hidden"
+            key={post._id}
+            className="bg-white border border-gray-200 rounded-lg shadow-md p-4"
           >
             <img
-              src={need.thumbnail}
-              alt={need.title}
-              className="w-full h-48 object-cover"
+              src={post.thumbnail}
+              alt={post.title}
+              className="w-full h-40 object-cover rounded-md mb-4"
             />
-            <div className="p-4">
-              <h3 className="text-lg font-semibold">{need.title}</h3>
-              <p className="text-sm text-gray-600">{need.category}</p>
-              <p className="text-sm text-gray-600">Deadline: {need.deadline}</p>
-              <a href={need.detailsUrl}></a>
-              <Link
-                to={`/volunteerDetails/${need._id}`}
-                className="mt-2 inline-block bg-blue-500 text-white py-2 px-4 rounded"
-              >
-                View Details
-              </Link>
-            </div>
+            <h3 className="text-xl font-semibold mb-2">{post.title}</h3>
+            <p className="text-gray-600 mb-2">{post.category}</p>
+            <p className="text-gray-500 mb-4">
+              {new Date(post.deadline).toLocaleDateString()}
+            </p>
+            <Link
+              to={`/volunteer-need-details/${post._id}`}
+              className="text-blue-500 hover:underline"
+            >
+              View Details
+            </Link>
           </div>
         ))}
       </div>
-    </div>
+      <Link
+        to="/need-volunteer"
+        className="mt-8 block text-center text-blue-500 hover:underline"
+      >
+        See All
+      </Link>
+    </section>
   );
 };
 

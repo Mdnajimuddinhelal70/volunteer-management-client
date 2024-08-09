@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import Swal from 'sweetalert2';
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const VolunteerNeedPostDetail = () => {
   const [needPostDetail, setNeedPostDetail] = useState([]);
@@ -16,13 +16,13 @@ const VolunteerNeedPostDetail = () => {
 
   const handleDelete = (id) => {
     Swal.fire({
-      title: 'Are you sure?',
+      title: "Are you sure?",
       text: "Do you want to delete this!",
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(`http://localhost:5000/deleteVolunteer/${id}`, {
@@ -36,11 +36,7 @@ const VolunteerNeedPostDetail = () => {
               setNeedPostDetail((prevPosts) =>
                 prevPosts.filter((post) => post._id !== id)
               );
-              Swal.fire(
-                'Deleted!',
-                'Your item has been deleted.',
-                'success'
-              );
+              Swal.fire("Deleted!", "Your item has been deleted.", "success");
             }
           });
       }
@@ -86,7 +82,10 @@ const VolunteerNeedPostDetail = () => {
                     {category}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                    <Link to={`/updateVolunteer/${_id}`} className="text-blue-600 hover:text-blue-900 mr-4">
+                    <Link
+                      to={`/updateVolunteer/${_id}`}
+                      className="text-blue-600 hover:text-blue-900 mr-4"
+                    >
                       Update
                     </Link>
                     <button
