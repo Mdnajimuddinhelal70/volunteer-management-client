@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import NeedPostItem from "./NeedPostItem";
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -18,7 +19,10 @@ const NeedPostDetails = () => {
     }, [])
     return (
        <>
-    
+         <Helmet>
+            <title>Volunteer || Need Post</title>
+            <link rel="canonical" href="https://www.tacobell.com/" />
+          </Helmet>
         <div className="container mx-auto md:grid grid-cols-2 my-8">
             {
                 needPost.map(item => <NeedPostItem

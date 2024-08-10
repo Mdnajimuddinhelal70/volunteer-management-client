@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../authentication/AuthProvider/AuthProvider";
 import { FaGoogle } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const { loginUser, googleSignIn } = useContext(AuthContext);
@@ -37,6 +38,10 @@ const Login = () => {
           <h2 className="text-xl font-bold text-center mb-6 text-gray-800">
             Welcome Back !
           </h2>
+          <Helmet>
+            <title>Volunteer || Login</title>
+            <link rel="canonical" href="https://www.tacobell.com/" />
+          </Helmet>
           <form onSubmit={handleLogin} className="space-y-4">
             <div className="form-control">
               <label className="label">
