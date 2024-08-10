@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "./../../authentication/AuthProvider/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 const AddVolunteerPost = () => {
   const { user } = useContext(AuthContext) || {};
@@ -64,6 +65,10 @@ const AddVolunteerPost = () => {
         onSubmit={handleSubmit}
         className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
       >
+        <Helmet>
+          <title>Volunteer || Add Vulunteer</title>
+          <link rel="canonical" href="https://www.tacobell.com/" />
+        </Helmet>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label className="block text-gray-700 text-sm font-bold mb-2">
