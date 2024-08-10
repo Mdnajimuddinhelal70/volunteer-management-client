@@ -9,8 +9,8 @@ const VolunteerNeedPostDetails = () => {
   const [post, setPost] = useState({});
   const { user } = useContext(AuthContext);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [volunteerName, setVolunteerName] = useState("");
-  const [volunteerEmail, setVolunteerEmail] = useState("");
+  const [volunteerName, setVolunteerName] = useState(user?.displayName || "");
+  const [volunteerEmail, setVolunteerEmail] = useState(user?.email || "");
   const [suggestion, setSuggestion] = useState("");
 
   useEffect(() => {
@@ -32,7 +32,16 @@ const VolunteerNeedPostDetails = () => {
       volunteerEmail,
       suggestion,
       status: "requested",
-      organizerEmail: user?.email,
+      organizerEmail: post.organizerEmail,
+      thumbnail: post.thumbnail,
+      postTitle: post.postTitle,
+      description: post.description,
+      category: post.category,
+      location: post.location,
+      noOfVolunteersNeeded: post.noOfVolunteersNeeded,
+      deadline: post.deadline,
+      organizerName: post.organizerName,
+     
     };
 
     fetch(`http://localhost:5000/submit-volunteer-request/${user?.email}`, {
@@ -183,8 +192,8 @@ const VolunteerNeedPostDetails = () => {
               <label className="block text-gray-700">Volunteer Name</label>
               <input
                 type="text"
-                value={user?.displayName}
-                onChange={() => setVolunteerName(user?.displayName)}
+                value={volunteerName}
+                onChange={(e) => setVolunteerName(e.target.value)}
                 placeholder="Your Name"
                 className="border border-gray-300 rounded-md p-2 w-full"
               />
@@ -193,8 +202,8 @@ const VolunteerNeedPostDetails = () => {
               <label className="block text-gray-700">Volunteer Email</label>
               <input
                 type="email"
-                value={user?.email}
-                onChange={() => setVolunteerEmail(user?.email)}
+                value={volunteerEmail}
+                onChange={(e) => setVolunteerEmail(e.target.value)}
                 placeholder="Your Email"
                 className="border border-gray-300 rounded-md p-2 w-full"
               />

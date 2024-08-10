@@ -6,7 +6,7 @@ const VolunteerNeedPostDetail = () => {
   const [needPostDetail, setNeedPostDetail] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/needPostDetail")
+    fetch("http://localhost:5000/myNeedPost")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -32,7 +32,7 @@ const VolunteerNeedPostDetail = () => {
           .then((data) => {
             console.log(data);
             if (data.deletedCount > 0) {
-              // Remove the deleted item from the state
+             
               setNeedPostDetail((prevPosts) =>
                 prevPosts.filter((post) => post._id !== id)
               );
@@ -65,18 +65,18 @@ const VolunteerNeedPostDetail = () => {
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {needPostDetail.map((post) => {
-              const { _id, thumbnail, title, category } = post;
+              const { _id, thumbnail, postTitle, category } = post;
               return (
                 <tr key={_id}>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <img
                       src={thumbnail}
-                      alt={title}
+                      alt={postTitle}
                       className="w-12 h-12 object-cover"
                     />
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                    {title}
+                    {postTitle}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     {category}

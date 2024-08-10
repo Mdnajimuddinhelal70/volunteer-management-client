@@ -1,5 +1,5 @@
 const VolunteerCardPostItem = ({ post, onDelete }) => {
-  const { _id, thumbnail, title, category } = post;
+  const { _id, thumbnail, postTitle, category } = post;
 
   return (
     <div className="overflow-x-auto">
@@ -25,12 +25,12 @@ const VolunteerCardPostItem = ({ post, onDelete }) => {
             <td className="px-6 py-4 whitespace-nowrap">
               <img
                 src={thumbnail}
-                alt={title}
+                alt={postTitle}
                 className="w-12 h-12 object-cover"
               />
             </td>
             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-              {title}
+              {postTitle}
             </td>
             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
               {category}
@@ -40,7 +40,7 @@ const VolunteerCardPostItem = ({ post, onDelete }) => {
                 Update
               </button>
               <button
-                onClick={() => onDelete(_id)} // Use the passed delete handler
+                onClick={() => onDelete(_id)}
                 className="text-red-600 hover:text-red-900"
               >
                 Delete
