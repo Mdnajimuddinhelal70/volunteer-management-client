@@ -1,11 +1,9 @@
+import { useContext, useState } from "react";
+import Swal from "sweetalert2";
 
-
-import { useContext, useState } from 'react';
-import Swal from 'sweetalert2';
-
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import { AuthContext } from './../../authentication/AuthProvider/AuthProvider';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { AuthContext } from "./../../authentication/AuthProvider/AuthProvider";
 
 const AddVolunteerPost = () => {
   const { user } = useContext(AuthContext) || {};
@@ -14,21 +12,21 @@ const AddVolunteerPost = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const thumbnail = e.target.thumbnail.value;
-    const title = e.target.title.value;
+    const postTitle = e.target.postTitle.value;
     const description = e.target.description.value;
     const category = e.target.category.value;
     const location = e.target.location.value;
-    const volunteersNeeded = e.target.volunteersNeeded.value;
+    const noOfVolunteersNeeded = e.target.noOfVolunteersNeeded.value;
     const organizerName = user.displayName;
     const email = user.email;
 
     const newPost = {
       thumbnail,
-      title,
+      postTitle,
       description,
       category,
       location,
-      volunteersNeeded,
+      noOfVolunteersNeeded,
       deadline,
       organizerName,
       email,
@@ -36,10 +34,10 @@ const AddVolunteerPost = () => {
     console.log(newPost);
 
     // Send data to server
-    fetch('http://localhost:5000/formVolunteer', {
-      method: 'POST',
+    fetch("http://localhost:5000/formVolunteer", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(newPost),
     })
@@ -47,10 +45,10 @@ const AddVolunteerPost = () => {
       .then((data) => {
         if (data.insertedId) {
           Swal.fire({
-            title: 'Success!',
-            text: 'Volunteer post added successfully',
-            icon: 'success',
-            confirmButtonText: 'Ok',
+            title: "Success!",
+            text: "Volunteer post added successfully",
+            icon: "success",
+            confirmButtonText: "Ok",
           });
         }
       });
@@ -58,12 +56,19 @@ const AddVolunteerPost = () => {
 
   return (
     <div className="mt-20 mx-auto max-w-3xl">
-      <h1 className="text-3xl font-semibold text-center mb-10">Add Volunteer Post</h1>
+      <h1 className="text-3xl font-semibold text-center mb-10">
+        Add Volunteer Post
+      </h1>
       <hr />
-      <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+      >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className="block text-gray-700 text-sm font-bold mb-2">Thumbnail URL:</label>
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Thumbnail URL:
+            </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               type="text"
@@ -73,17 +78,21 @@ const AddVolunteerPost = () => {
             />
           </div>
           <div>
-            <label className="block text-gray-700 text-sm font-bold mb-2">Title:</label>
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Title:
+            </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               type="text"
-              name="title"
+              name="postTitle"
               required
               placeholder="Title"
             />
           </div>
           <div>
-            <label className="block text-gray-700 text-sm font-bold mb-2">Description:</label>
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Description:
+            </label>
             <textarea
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               name="description"
@@ -92,7 +101,9 @@ const AddVolunteerPost = () => {
             ></textarea>
           </div>
           <div>
-            <label className="block text-gray-700 text-sm font-bold mb-2">Category:</label>
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Category:
+            </label>
             <select
               id="category"
               name="category"
@@ -107,7 +118,9 @@ const AddVolunteerPost = () => {
             </select>
           </div>
           <div>
-            <label className="block text-gray-700 text-sm font-bold mb-2">Location:</label>
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Location:
+            </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               type="text"
@@ -117,17 +130,21 @@ const AddVolunteerPost = () => {
             />
           </div>
           <div>
-            <label className="block text-gray-700 text-sm font-bold mb-2">Volunteers Needed:</label>
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Volunteers Needed:
+            </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               type="number"
-              name="volunteersNeeded"
+              name="noOfVolunteersNeeded"
               required
               placeholder="Number of Volunteers Needed"
             />
           </div>
           <div>
-            <label className="block text-gray-700 text-sm font-bold mb-2">Deadline:</label>
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Deadline:
+            </label>
             <DatePicker
               selected={deadline}
               onChange={(date) => setDeadline(date)}
@@ -137,7 +154,9 @@ const AddVolunteerPost = () => {
             />
           </div>
           <div>
-            <label className="block text-gray-700 text-sm font-bold mb-2">Organizer Name:</label>
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Organizer Name:
+            </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               type="text"
@@ -149,7 +168,9 @@ const AddVolunteerPost = () => {
             />
           </div>
           <div>
-            <label className="block text-gray-700 text-sm font-bold mb-2">Organizer Email:</label>
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Organizer Email:
+            </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               type="email"
@@ -165,7 +186,7 @@ const AddVolunteerPost = () => {
               className="bg-pink-500 hover:bg-fuchsia-400 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="submit"
             >
-              Add Post
+              Add
             </button>
           </div>
         </div>
