@@ -19,9 +19,11 @@ const NeedVolunteer = () => {
             <h3 className="text-xl font-semibold mb-2">Title: {post.title}</h3>
             <p className="text-gray-600 mb-2">:Category: {post.category}</p>
             <p className="text-gray-500 mb-4">Deadline: {new Date(post.deadline).toLocaleDateString()}</p>
+            <button className='btn btn-outline'>
             <Link to={`/volunteer-need-details/${post._id}`} className="text-blue-500 hover:underline">
               View Details
             </Link>
+            </button>
           </div>
         ))}
       </div>
