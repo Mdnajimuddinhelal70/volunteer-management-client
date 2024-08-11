@@ -9,9 +9,9 @@ import VolunteerNeedPostDetail from "../pages/VolunteerNeedPostDetail/VolunteerN
 import UpdateVolunteerPost from "../components/UpdateVolunteer/UpdateVolunteerPost ";
 import ManageMypost from "../components/ManageMypost/ManageMypost";
 import NeedPostDetails from "../pages/NeedPostDetails/NeedPostDetails";
-import BeAVolunteer from "../components/BeAVolunteer";
 import NeedVolunteerSee from "../pages/NeedVolunteerSee/NeedVolunteerSee";
 import VolunteerNeedPostDetails from "../components/VolunteerNeedPostDetails/VolunteerNeedPostDetails";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -53,15 +53,13 @@ export const router = createBrowserRouter([
       },
       {
         path: "/manageMypost",
-        element: <ManageMypost />
+        element: <PrivateRoute>
+          <ManageMypost />
+        </PrivateRoute>
       },
       {
         path: "/needPostDetails",
         element: <NeedPostDetails />
-      },
-      {
-        path: "/posts/:id",
-        element: <BeAVolunteer />
       },
       {
         path: "/volunteer-need-details/:id",

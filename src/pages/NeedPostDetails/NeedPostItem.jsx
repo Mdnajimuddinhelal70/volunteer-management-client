@@ -1,39 +1,34 @@
-const NeedPostItem = ({ item }) => {
-    const {
-      thumbnail,
-      title,
-      category,
-      description,
-      location,
-      volunteersNeeded,
-      deadline,
-      organizerName,
-      email
-    } = item;
-  
-    return (
-      <div className="card bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden w-80">
-        <figure className="relative">
-          <img
-            src={thumbnail || "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"}
-            alt={title}
-            className="w-full h-48 object-cover"
-          />
-          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-transparent to-transparent p-4">
-            <h2 className="text-white text-xl font-bold">{title}</h2>
-          </div>
-        </figure>
-        <div className="p-4">
-          <p className="text-sm text-gray-600 mb-2"><strong>Category:</strong> {category}</p>
-          <p className="text-sm text-gray-600 mb-2"><strong>Location:</strong> {location}</p>
-          <p className="text-sm text-gray-600 mb-2"><strong>Volunteers Needed:</strong> {volunteersNeeded}</p>
-          <p className="text-sm text-gray-600 mb-2"><strong>Deadline:</strong> {deadline}</p>
-          <p className="text-sm text-gray-600 mb-2"><strong>Organizer:</strong> {organizerName} ({email})</p>
-          <p className="text-sm text-gray-700">{description}</p>
-        </div>
-      </div>
-    );
-  };
-  
-  export default NeedPostItem;
-  
+const NeedPostItem = ({ item, onRemove }) => {
+  const {
+    thumbnail,
+    postTitle,
+    category,
+  } = item;
+
+  return (
+    <tr className="bg-white border-b border-gray-200">
+      <td className="p-2 align-top">
+        <img
+          src={
+            thumbnail ||
+            "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+          }
+          alt={postTitle}
+          className="w-32 h-16 object-cover rounded"
+        />
+      </td>
+      <td className="p-2 align-top text-center font-bold">{postTitle}</td>
+      <td className="p-2 align-top text-center text-gray-600">{category}</td>
+      <td className="p-2 align-top text-center">
+        <button
+          className="px-4 py-1 bg-red-600 text-white text-xs rounded hover:bg-red-700"
+          onClick={onRemove}
+        >
+          Cancel
+        </button>
+      </td>
+    </tr>
+  );
+};
+
+export default NeedPostItem;

@@ -1,13 +1,18 @@
 import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, replace, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../authentication/AuthProvider/AuthProvider";
 import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 import { Helmet } from "react-helmet-async";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const { loginUser, googleSignIn } = useContext(AuthContext);
-  const [showPassword, setShowPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
+
   const handleLogin = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -16,9 +21,15 @@ const Login = () => {
     console.log(email, password);
 
     loginUser(email, password)
-      .then((result) => {
-        console.log(result);
-        navigate("/");
+      .then(() => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "User Login successfull",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate(from, {replace: true})
       })
       .catch((error) => {
         console.log(error);
@@ -67,7 +78,7 @@ const Login = () => {
                 className="input input-bordered w-full border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-200"
                 required
               />
-               <div className="absolute inset-y-0 right-0 flex items-center px-2">
+              <div className="absolute inset-y-0 right-0 flex items-center px-2">
                 <button
                   type="button"
                   className="focus:outline-none mr-12 mt-4"
