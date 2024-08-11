@@ -1,11 +1,12 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../authentication/AuthProvider/AuthProvider";
-import { FaGoogle } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const { loginUser, googleSignIn } = useContext(AuthContext);
+  const [showPassword, setShowPassword] = useState(false)
   const navigate = useNavigate();
   const handleLogin = (event) => {
     event.preventDefault();
@@ -60,12 +61,21 @@ const Login = () => {
                 <span className="label-text text-gray-700">Password</span>
               </label>
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="Enter your password"
                 className="input input-bordered w-full border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-200"
                 required
               />
+               <div className="absolute inset-y-0 right-0 flex items-center px-2">
+                <button
+                  type="button"
+                  className="focus:outline-none mr-12 mt-4"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
             </div>
             <div className="form-control mt-6">
               <input

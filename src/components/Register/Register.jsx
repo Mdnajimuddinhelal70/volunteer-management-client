@@ -1,11 +1,14 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../authentication/AuthProvider/AuthProvider";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Register = () => {
+  const [error, setError] = useState("")
   const { createUser } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
 
+  const navigate = useNavigate();
   const handleRegister = async (event) => {
     event.preventDefault();
     const form = event.target;
@@ -14,24 +17,39 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
 
-    console.log(name, email, photo, password)
+    const uppercaseRegex = /[A-Z]/
+    const lowercaseRegex = /[a-z]/
+
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters long!");
+      return;
+    }
+    if (!uppercaseRegex.test(password)) {
+      setError("Password must contain at least one uppercase letter!");
+      return;
+    }
+    if (!lowercaseRegex.test(password)) {
+      setError("Password must contain at least one lowercase letter!");
+      return;
+    }
+
+    console.log(name, email, photo, password);
     createUser(email, password)
-    .then(result => {
-      console.log(result)
-      navigate('/')
-    })
-    .catch(error => {
-      console.log(error.message)
-    })
-      
+      .then(result => {
+        console.log(result);
+        navigate('/');
+      })
+      .catch(error => {
+        console.log(error.message);
+      });
   };
 
   return (
     <div className="hero min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 flex items-center justify-center">
       <div className="card w-[700px] max-w-xl bg-white shadow-2xl rounded-lg overflow-hidden">
-        <div className="p-4 lg:p-4 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% ...">
+        <div className="p-4 lg:p-4 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
           <h2 className="text-xl font-bold text-center mb-6 text-gray-800">
-           User Registration !
+           User Registration!
           </h2>
           <form onSubmit={handleRegister} className="space-y-2">
             <div className="form-control">
@@ -70,19 +88,27 @@ const Register = () => {
                 required
               />
             </div>
-            <div className="form-control">
+            <div className="form-control relative">
               <label className="label">
                 <span className="label-text text-gray-700">Password</span>
               </label>
-              <input
-                type="password"
+              <input       
+                id="password"      
                 name="password"
+                type={showPassword ? "text" : "password"}
                 placeholder="Enter your password"
-                className="input input-bordered w-full border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-200"
+                className="input input-bordered w-full border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-200 pr-12" // Adjust padding-right
                 required
               />
+              <button
+                type="button"
+                className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500 focus:outline-none mt-9"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
+              </button>
             </div>
-            
+              {error && <p className="text-red-500 text-xs mt-2">{error}</p>}
             <div className="form-control mt-6">
               <input
                 className="btn btn-outline w-full transition duration-200"
