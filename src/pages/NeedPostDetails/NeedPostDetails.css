@@ -5,19 +5,19 @@
   }
   
   .swal-popup {
-    width: 300px; /* Set width as needed */
+    width: 300px; 
     padding: 20px;
   }
   
   .swal-title {
-    font-size: 18px; /* Set title font size */
+    font-size: 18px; 
   }
   
   .swal-content {
-    font-size: 14px; /* Set content font size */
+    font-size: 14px; 
   }
   
   .swal-confirm, .swal-cancel {
-    font-size: 14px; /* Set button font size */
+    font-size: 14px; 
   }
   

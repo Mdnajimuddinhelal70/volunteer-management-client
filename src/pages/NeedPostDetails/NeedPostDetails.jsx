@@ -1,29 +1,32 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import NeedPostItem from "./NeedPostItem";
 import { Helmet } from "react-helmet-async";
 import Swal from 'sweetalert2';
+import { AuthContext } from './../../authentication/AuthProvider/AuthProvider';
 
 const NeedPostDetails = () => {
   const [needPost, setNeedPost] = useState([]);
+  const { user } = useContext(AuthContext);
+  const [control, setControl] = useState(false);
 
   useEffect(() => {
-    fetch('http://localhost:5000/needPost')
+    fetch(`http://localhost:5000/needPost/${user?.email}`)
       .then(res => res.json())
       .then(data => {
         console.log(data);
         setNeedPost(data);
       });
-  }, []);
+  }, [user?.email, control]);
 
-  const handleRemoveItem = (id) => {
-    Swal.fire({
+  const handleRemoveItem = async (id) => {
+    const result = await Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#75552',
+      confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, cancel it!',
+      confirmButtonText: 'Yes, delete it!',
       customClass: {
         container: 'swal-container',
         popup: 'swal-popup',
@@ -32,12 +35,19 @@ const NeedPostDetails = () => {
         confirmButton: 'swal-confirm',
         cancelButton: 'swal-cancel'
       },
-      width: '300px',  
-    }).then((result) => {
-      if (result.isConfirmed) {
-        setNeedPost(prevPosts => prevPosts.filter(item => item._id !== id));
-      }
+      width: '300px',
     });
+
+    if (result.isConfirmed) {
+      const response = await fetch(`http://localhost:5000/deleteNeedPost/${id}`, {
+        method: 'DELETE',
+      });
+      const data = await response.json();
+      console.log(data);
+      if (data.deletedCount > 0) {
+        setControl(!control);
+      }
+    }
   };
 
   return (
@@ -47,13 +57,29 @@ const NeedPostDetails = () => {
         <link rel="canonical" href="https://www.tacobell.com/" />
       </Helmet>
       <div className="container mx-auto grid gap-4 grid-cols-1 my-8">
-        {needPost.map(item => (
-          <NeedPostItem
-            key={item._id}
-            item={item}
-            onRemove={() => handleRemoveItem(item._id)}
-          />
-        ))}
+        {needPost.length > 0 ? (
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="p-2 text-left">Image</th>
+                <th className="p-2 text-left">Title</th>
+                <th className="p-2 text-left">Category</th>
+                <th className="p-2 text-left">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {needPost.map(item => (
+                <NeedPostItem
+                  key={item._id}
+                  item={item}
+                  handleDelete={() => handleRemoveItem(item._id)}
+                />
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <p className="text-center text-gray-500 my-20">No posts available. Please check back later.</p>
+        )}
       </div>
     </>
   );

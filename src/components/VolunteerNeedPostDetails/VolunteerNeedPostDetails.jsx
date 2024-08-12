@@ -43,14 +43,13 @@ const VolunteerNeedPostDetails = () => {
       organizerName: post.organizerName,
      
     };
-
     fetch(`http://localhost:5000/submit-volunteer-request/${user?.email}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(requestData),
-    })
+    })   
       .then((response) => response.json())
       .then((data) => {
         console.log(data);

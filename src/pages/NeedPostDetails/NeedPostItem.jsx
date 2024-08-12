@@ -1,4 +1,4 @@
-const NeedPostItem = ({ item, onRemove }) => {
+const NeedPostItem = ({ item, handleDelete }) => {
   const {
     thumbnail,
     postTitle,
@@ -19,7 +19,7 @@ const NeedPostItem = ({ item, onRemove }) => {
       <td className="p-2 align-top text-center">
         <button
           className="px-4 py-1 bg-red-600 text-white text-xs rounded hover:bg-red-700"
-          onClick={onRemove}
+          onClick={handleDelete}
         >
           Cancel
         </button>
