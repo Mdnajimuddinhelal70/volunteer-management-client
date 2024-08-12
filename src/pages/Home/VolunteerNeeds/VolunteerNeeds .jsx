@@ -29,21 +29,19 @@ const VolunteerNeeds = () => {
             <p className="text-gray-500 mb-4">
               {new Date(post.deadline).toLocaleDateString()}
             </p>
-            <Link
-              to={`/volunteer-need-details/${post._id}`}
-              className="text-blue-500 hover:underline"
-            >
-              View Details
-            </Link>
+            <button className="btn btn-ghost">
+              <Link to={`/volunteer-need-details/${post._id}`}>
+                View Details
+              </Link>
+            </button>
           </div>
         ))}
       </div>
-      <Link
-        to="/need-volunteer"
-        className="mt-8 block text-center text-blue-500 hover:underline"
-      >
-        See All
-      </Link>
+      <button className="flex items-center justify-center btn btn-secondary mt-4 mx-auto">
+        <Link to="/need-volunteer" className="block text-center">
+          See All
+        </Link>
+      </button>
     </section>
   );
 };

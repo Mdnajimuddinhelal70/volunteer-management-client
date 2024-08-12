@@ -8,7 +8,6 @@ import { AuthContext } from "../../authentication/AuthProvider/AuthProvider";
 const UpdateVolunteerPost = () => {
   const { id } = useParams();
   const { user } = useContext(AuthContext);
-
   const [update, setUpdate] = useState({});
   const [deadline, setDeadline] = useState(new Date());
 
@@ -16,15 +15,14 @@ const UpdateVolunteerPost = () => {
     fetch(`http://localhost:5000/volunteerPostUpdate/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log("Fetched data:", data); // Log data to check the date value
+        console.log("Fetched data:", data);
 
         setUpdate(data);
-        
-        // Validate the date
+
         const fetchedDeadline = new Date(data.deadline);
         if (isNaN(fetchedDeadline.getTime())) {
-          console.error("Invalid date:", data.deadline); // Log the invalid date
-          setDeadline(new Date()); // Default to current date
+          console.error("Invalid date:", data.deadline);
+          setDeadline(new Date());
         } else {
           setDeadline(fetchedDeadline);
         }
@@ -43,7 +41,6 @@ const UpdateVolunteerPost = () => {
       deadline: deadline.toISOString(),
     };
 
-    // Send update request to the server
     fetch(`http://localhost:5000/updateVolunteerPost/${id}`, {
       method: "PUT",
       headers: {

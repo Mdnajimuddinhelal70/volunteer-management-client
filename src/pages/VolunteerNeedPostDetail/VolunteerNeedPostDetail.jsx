@@ -31,8 +31,7 @@ const VolunteerNeedPostDetail = () => {
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
-            if (data.deletedCount > 0) {
-             
+            if (data.deletedCount > 0) {            
               setNeedPostDetail((prevPosts) =>
                 prevPosts.filter((post) => post._id !== id)
               );

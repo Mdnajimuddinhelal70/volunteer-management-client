@@ -12,59 +12,72 @@ import NeedPostDetails from "../pages/NeedPostDetails/NeedPostDetails";
 import NeedVolunteerSee from "../pages/NeedVolunteerSee/NeedVolunteerSee";
 import VolunteerNeedPostDetails from "../components/VolunteerNeedPostDetails/VolunteerNeedPostDetails";
 import PrivateRoute from "./PrivateRoute";
+import ErrorPage from "../ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
-        element: <Home />
+        element: <Home />,
       },
       {
         path: "/login",
-        element: <Login />
+        element: <Login />,
       },
       {
         path: "/register",
-        element: <Register />
+        element: <Register />,
       },
       {
         path: "/need-volunteer",
-        element: <NeedVolunteerSee />
+        element: <NeedVolunteerSee />,
       },
 
       {
         path: "/volunteerDetails/:id",
-        element: <VolunteerNeedDetails />
+        element: <VolunteerNeedDetails />,
       },
       {
         path: "/addVolunteerPost",
-        element: <AddVolunteerPost />
+        element: <AddVolunteerPost />,
       },
       {
         path: "/volunteerNdPstDtail",
-        element: <VolunteerNeedPostDetail />
+        element: <PrivateRoute>
+          <VolunteerNeedPostDetail />
+        </PrivateRoute>,
       },
       {
         path: "/updateVolunteer/:id",
-        element: <UpdateVolunteerPost />
+        element: <UpdateVolunteerPost />,
       },
+
       {
-        path: "/manageMypost",
-        element: <PrivateRoute>
-          <ManageMypost />
-        </PrivateRoute>
+        path: "/volunteerNdPstDtail",
+        element: (
+          <PrivateRoute>
+            <ManageMypost />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/needPostDetails",
-        element: <NeedPostDetails />
+        element: (
+          <PrivateRoute>
+            <NeedPostDetails />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/volunteer-need-details/:id",
-        element: <VolunteerNeedPostDetails />
+        element: <PrivateRoute>
+          <VolunteerNeedPostDetails />
+        </PrivateRoute>,
       },
-    ]
+    ],
   },
 ]);

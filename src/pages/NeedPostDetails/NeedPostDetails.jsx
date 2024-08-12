@@ -35,7 +35,6 @@ const NeedPostDetails = () => {
       width: '300px',  
     }).then((result) => {
       if (result.isConfirmed) {
-        // Perform the removal after confirmation
         setNeedPost(prevPosts => prevPosts.filter(item => item._id !== id));
       }
     });
@@ -44,7 +43,7 @@ const NeedPostDetails = () => {
   return (
     <>
       <Helmet>
-        <title>Volunteer || Need Post</title>
+        <title>Volunteer || Request Post</title>
         <link rel="canonical" href="https://www.tacobell.com/" />
       </Helmet>
       <div className="container mx-auto grid gap-4 grid-cols-1 my-8">

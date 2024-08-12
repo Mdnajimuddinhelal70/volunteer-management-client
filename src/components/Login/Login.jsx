@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link, replace, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../authentication/AuthProvider/AuthProvider";
 import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 import { Helmet } from "react-helmet-async";
@@ -29,7 +29,7 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate(from, {replace: true})
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error);
@@ -39,8 +39,9 @@ const Login = () => {
   const handleGoogleLogin = () => {
     googleSignIn().then((result) => {
       console.log(result.user);
-      navigate("/");
+     
     });
+    navigate(from, {replac: true})
   };
 
   return (

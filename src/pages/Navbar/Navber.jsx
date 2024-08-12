@@ -34,7 +34,7 @@ const Navber = () => {
           to="/needPostDetails"
           className="text-gray-700 hover:text-gray-900"
         >
-          Need Post Details
+         My volunteer request post
         </Link>
       </li>
       <li>
@@ -42,7 +42,7 @@ const Navber = () => {
           to="/volunteerNdPstDtail"
           className="text-gray-700 hover:text-gray-900"
         >
-          My Need Volunteer Post
+         Manage My Post
         </Link>
       </li>
       <li>
@@ -145,7 +145,7 @@ const Navber = () => {
               </li>
               <li>
                 <Link
-                  to="/manageMypost"
+                  to="/volunteerNdPstDtail"
                   className="text-gray-700 hover:text-gray-900"
                 >
                   Manage My Post

@@ -9,10 +9,7 @@ const NeedPostItem = ({ item, onRemove }) => {
     <tr className="bg-white border-b border-gray-200">
       <td className="p-2 align-top">
         <img
-          src={
-            thumbnail ||
-            "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-          }
+          src={thumbnail}
           alt={postTitle}
           className="w-32 h-16 object-cover rounded"
         />
