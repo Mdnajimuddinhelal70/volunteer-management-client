@@ -10,10 +10,10 @@ const NeedPostDetails = () => {
   const [control, setControl] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/needPost/${user?.email}`)
+    fetch(`https://volunteer-management-vert.vercel.app/needPost/${user?.email}`)
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+        // console.log(data);
         setNeedPost(data);
       });
   }, [user?.email, control]);
@@ -39,11 +39,11 @@ const NeedPostDetails = () => {
     });
 
     if (result.isConfirmed) {
-      const response = await fetch(`http://localhost:5000/deleteNeedPost/${id}`, {
+      const response = await fetch(`https://volunteer-management-vert.vercel.app/deleteNeedPost/${id}`, {
         method: 'DELETE',
       });
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       if (data.deletedCount > 0) {
         setControl(!control);
       }

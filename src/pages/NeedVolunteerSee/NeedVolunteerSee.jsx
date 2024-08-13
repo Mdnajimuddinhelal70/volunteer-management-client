@@ -7,7 +7,7 @@ const NeedVolunteer = () => {
 
   useEffect(() => {
     // Fetch all posts
-    fetch(`http://localhost:5000/volunteerAll?search=${search}`)
+    fetch(`https://volunteer-management-vert.vercel.app/volunteerAll?search=${search}`)
       .then((res) => res.json())
       .then((data) => {
         setPosts(data);

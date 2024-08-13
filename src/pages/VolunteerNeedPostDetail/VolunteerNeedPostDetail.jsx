@@ -2,16 +2,22 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../authentication/AuthProvider/AuthProvider";
+import { FaTrash } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 const VolunteerNeedPostDetail = () => {
   const [needPostDetail, setNeedPostDetail] = useState([]);
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/myNeedPost/${user?.email}`)
+    fetch(`https://volunteer-management-vert.vercel.app/myNeedPost/${user?.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('access-token')}`
+      }
+    })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setNeedPostDetail(data);
       });
   }, [user?.email]);
@@ -27,12 +33,12 @@ const VolunteerNeedPostDetail = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/deleteVolunteer/${id}`, {
+        fetch(`https://volunteer-management-vert.vercel.app/deleteVolunteer/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
+            // console.log(data);
             if (data.deletedCount > 0) {
               setNeedPostDetail((prevPosts) =>
                 prevPosts.filter((post) => post._id !== id)
@@ -46,6 +52,9 @@ const VolunteerNeedPostDetail = () => {
 
   return (
     <div className="mb-10">
+      <Helmet>
+        <title>Volunteer || Mange Post</title>
+      </Helmet>
       {needPostDetail.length === 0 ? (
         <p className="text-center mt-28 mb-28 text-gray-500">There is no data available here!</p>
       ) : (
@@ -96,7 +105,7 @@ const VolunteerNeedPostDetail = () => {
                         onClick={() => handleDelete(_id)}
                         className="text-red-600 hover:text-red-900"
                       >
-                        Delete
+                       <FaTrash className="text-slate-700 mt-2" />
                       </button>
                     </td>
                   </tr>

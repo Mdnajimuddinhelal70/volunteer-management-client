@@ -32,10 +32,10 @@ const AddVolunteerPost = () => {
       organizerName,
       email,
     };
-    console.log(newPost);
+    // console.log(newPost);
 
     // Send data to server
-    fetch("http://localhost:5000/formVolunteer", {
+    fetch("https://volunteer-management-vert.vercel.app/formVolunteer", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

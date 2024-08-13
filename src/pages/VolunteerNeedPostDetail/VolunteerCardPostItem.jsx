@@ -1,3 +1,5 @@
+import { FaTrash } from "react-icons/fa";
+
 const VolunteerCardPostItem = ({ post, onDelete }) => {
   const { _id, thumbnail, postTitle, category } = post;
   return (
@@ -42,7 +44,7 @@ const VolunteerCardPostItem = ({ post, onDelete }) => {
                 onClick={() => onDelete(_id)}
                 className="text-red-600 hover:text-red-900"
               >
-                Delete
+               <FaTrash />
               </button>
             </td>
           </tr>

@@ -12,10 +12,10 @@ const UpdateVolunteerPost = () => {
   const [deadline, setDeadline] = useState(new Date());
 
   useEffect(() => {
-    fetch(`http://localhost:5000/volunteerPostUpdate/${id}`)
+    fetch(`https://volunteer-management-vert.vercel.app/volunteerPostUpdate/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log("Fetched data:", data);
+        // console.log("Fetched data:", data);
 
         setUpdate(data);
 
@@ -41,7 +41,7 @@ const UpdateVolunteerPost = () => {
       deadline: deadline.toISOString(),
     };
 
-    fetch(`http://localhost:5000/updateVolunteerPost/${id}`, {
+    fetch(`https://volunteer-management-vert.vercel.app/updateVolunteerPost/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

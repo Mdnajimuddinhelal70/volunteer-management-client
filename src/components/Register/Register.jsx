@@ -33,7 +33,7 @@ const Register = () => {
       return;
     }
 
-    console.log(name, email, photo, password);
+    // console.log(name, email, photo, password);
     createUser(email, password)
       .then(result => {
         console.log(result);

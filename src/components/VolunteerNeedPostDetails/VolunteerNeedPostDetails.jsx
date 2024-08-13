@@ -14,7 +14,7 @@ const VolunteerNeedPostDetails = () => {
   const [suggestion, setSuggestion] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/volunteer-need-details/${id}`)
+    fetch(`https://volunteer-management-vert.vercel.app/volunteer-need-details/${id}`)
       .then((response) => response.json())
       .then((data) => setPost(data))
       .catch((error) => console.error("Error fetching post details:", error));
@@ -43,7 +43,7 @@ const VolunteerNeedPostDetails = () => {
       organizerName: post.organizerName,
      
     };
-    fetch(`http://localhost:5000/submit-volunteer-request/${user?.email}`, {
+    fetch(`https://volunteer-management-vert.vercel.app/submit-volunteer-request/${user?.email}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -52,7 +52,7 @@ const VolunteerNeedPostDetails = () => {
     })   
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         Swal.fire({
           icon: 'success',
           title: 'Request Submitted',
