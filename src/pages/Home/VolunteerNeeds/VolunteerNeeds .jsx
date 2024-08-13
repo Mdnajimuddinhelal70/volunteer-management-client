@@ -4,20 +4,25 @@ import { Link } from "react-router-dom";
 const VolunteerNeeds = () => {
   const [posts, setPosts] = useState([]);
 
-  //
   useEffect(() => {
     fetch("https://volunteer-management-vert.vercel.app/volunteer")
       .then((res) => res.json())
       .then((data) => setPosts(data));
   }, []);
 
+  
   return (
-    <section className="p-8">
+   <>
+    <section className="p-8 mt-14">
+        <div>
+        
+        </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {posts.map((post) => (
           <div
             key={post._id}
-            className="bg-white border border-gray-200 rounded-lg shadow-md p-4"
+            className="bg-white border border-gray-200 
+            rounded-lg shadow-md p-4"
           >
             <img
               src={post.thumbnail}
@@ -37,12 +42,14 @@ const VolunteerNeeds = () => {
           </div>
         ))}
       </div>
-      <button className="flex items-center justify-center btn btn-secondary mt-4 mx-auto">
-        <Link to="/need-volunteer" className="block text-center">
+      <button className="flex items-center justify-center btn
+       btn-secondary mt-4 mx-auto">
+        <Link to="/need-volunteer" className="block text-center text-xl">
           See All
         </Link>
       </button>
     </section>
+   </>
   );
 };
 

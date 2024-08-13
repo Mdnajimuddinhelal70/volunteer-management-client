@@ -4,7 +4,7 @@ Welcome to the Volunteer Management Website! This platform connects volunteers w
 
 ## Live Site
 
-You can check out the live version of the website here: [Volunteer Management Website](https://b9-a11-assignment-f8c48.web.app/)
+You can check out the live version of the website here: [Volunteer Management Website](https://b9-a11-assignment-f8c48.web.app)
 
 ## Features
 
